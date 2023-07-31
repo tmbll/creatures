@@ -1,4 +1,5 @@
 import { Creature } from "../src/Creature";
+import { Collector } from "../src/Collector";
 
 describe("Creature", () => {
   it("creates a new creature with species, family and position", () => {
@@ -15,11 +16,3 @@ describe("Collector", () => {
     expect(collector.position).toEqual({ x: 0, y: 0 });
   });
 });
-
-class Collector {
-  position: { x: number; y: number };
-
-  constructor(position: { x: number; y: number }) {
-    this.position = position;
-  }
-}
