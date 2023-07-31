@@ -22,4 +22,14 @@ export class World {
       );
     });
   }
+
+  catchRandomCreature(collector: Collector) {
+    const nearbyCreatures = this.getNearbyCreatures(collector);
+
+    if (nearbyCreatures.length > 0) {
+      const randomCreature =
+        nearbyCreatures[Math.floor(Math.random() * nearbyCreatures.length)];
+      collector.catch(randomCreature);
+    }
+  }
 }
