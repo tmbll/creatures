@@ -13,4 +13,12 @@ describe("Creature", () => {
     expect(creature.HP).toBeDefined();
     expect(creature.CP).toBeDefined();
   });
+
+  it("should lose HP when taking damage", () => {
+    const creature = new Creature("Bird", "flyer", { x: 0, y: 0 });
+    const initialHP = creature.HP;
+    const damage = 1;
+    creature.takeDamage(damage);
+    expect(creature.HP).toBe(initialHP - damage);
+  });
 });
