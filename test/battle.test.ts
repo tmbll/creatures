@@ -1,4 +1,5 @@
 import { Creature } from "../src/Creature";
+import { Battle } from "../src/Battle";
 
 describe("Battle", () => {
   it("should initialise a battle between two creatures", () => {
@@ -10,13 +11,3 @@ describe("Battle", () => {
     expect(battle.creature2).toBe(creature2);
   });
 });
-
-class Battle {
-  creature1: Creature;
-  creature2: Creature;
-
-  constructor(creature1: Creature, creature2: Creature) {
-    this.creature1 = creature1;
-    this.creature2 = creature2;
-  }
-}
