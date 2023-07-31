@@ -15,9 +15,10 @@ export class World {
 
   getNearbyCreatures(collector: Collector): Creature[] {
     return this.creatures.filter((creature) => {
+      const catchRange = 5;
       return (
-        Math.abs(creature.position.x - collector.position.x) <= 5 &&
-        Math.abs(creature.position.y - collector.position.y) <= 5
+        Math.abs(creature.position.x - collector.position.x) <= catchRange &&
+        Math.abs(creature.position.y - collector.position.y) <= catchRange
       );
     });
   }
