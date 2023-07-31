@@ -1,18 +1,19 @@
 import { Entity } from "./Entity";
+import { Family } from "./Family";
 import { Species } from "./Species";
 
 const randomNumberBetween1And10 = () => Math.floor(Math.random() * 10) + 1;
 
 export class Creature implements Entity {
   species: Species;
-  family: string;
+  family: Family;
   position: { x: number; y: number };
   HP: number;
   CP: number;
 
   constructor(
     species: Species,
-    family: string,
+    family: Family,
     position: { x: number; y: number },
     HP?: number,
     CP?: number

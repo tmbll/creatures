@@ -1,6 +1,7 @@
 import { Creature } from "../src/Creature";
 import { Collector } from "../src/Collector";
 import { Species } from "../src/Species";
+import { Family } from "../src/Family";
 
 describe("Collector", () => {
   it("creates a collector with a position", () => {
@@ -10,7 +11,7 @@ describe("Collector", () => {
 
   it("catches a creature and adds it to its collection", () => {
     const collector = new Collector({ x: 0, y: 0 });
-    const creature = new Creature(Species.Bird, "flyer", { x: 0, y: 0 });
+    const creature = new Creature(Species.Bird, Family.Flyer, { x: 0, y: 0 });
 
     collector.catch(creature);
     expect(collector.collection).toContain(creature);

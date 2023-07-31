@@ -1,4 +1,5 @@
 import { Creature } from "./Creature";
+import { Family } from "./Family";
 
 export class Battle {
   attacker: Creature;
@@ -22,8 +23,9 @@ export class Battle {
 
   calculateDamage(attacker: Creature, defender: Creature): any {
     if (
-      (attacker.family === "flyer" && defender.family === "runner") ||
-      (attacker.family === "amphibian" && defender.family !== "amphibian")
+      (attacker.family === Family.Flyer && defender.family === Family.Runner) ||
+      (attacker.family === Family.Amphibian &&
+        defender.family !== Family.Amphibian)
     ) {
       return attacker.CP * 2;
     }

@@ -1,11 +1,15 @@
 import { Creature } from "../src/Creature";
 import { Battle } from "../src/Battle";
 import { Species } from "../src/Species";
+import { Family } from "../src/Family";
 
 describe("Battle", () => {
   it("should initialise a battle between two creatures", () => {
-    const creature1 = new Creature(Species.Bird, "flyer", { x: 0, y: 0 });
-    const creature2 = new Creature(Species.Shark, "swimmer", { x: 1, y: 1 });
+    const creature1 = new Creature(Species.Bird, Family.Flyer, { x: 0, y: 0 });
+    const creature2 = new Creature(Species.Shark, Family.Swimmer, {
+      x: 1,
+      y: 1,
+    });
     const battle = new Battle(creature1, creature2);
 
     expect(battle.attacker).toBe(creature1);
@@ -15,14 +19,14 @@ describe("Battle", () => {
   it("should execute fight between two creatures and declare a winner", () => {
     const creature1 = new Creature(
       Species.Bird,
-      "flyer",
+      Family.Flyer,
       { x: 0, y: 0 },
       10,
       1
     );
     const creature2 = new Creature(
       Species.Shark,
-      "swimmer",
+      Family.Swimmer,
       { x: 1, y: 1 },
       10,
       5
@@ -37,15 +41,15 @@ describe("Battle", () => {
   });
 
   test.each([
-    ["flyer", "runner", 2],
-    ["flyer", "amphibian", 1],
-    ["flyer", "flyer", 1],
-    ["amphibian", "runner", 2],
-    ["amphibian", "flyer", 2],
-    ["amphibian", "amphibian", 1],
-    ["runner", "runner", 1],
-    ["runner", "flyer", 1],
-    ["runner", "amphibian", 1],
+    [Family.Flyer, Family.Runner, 2],
+    [Family.Flyer, Family.Amphibian, 1],
+    [Family.Flyer, Family.Flyer, 1],
+    [Family.Amphibian, Family.Runner, 2],
+    [Family.Amphibian, Family.Flyer, 2],
+    [Family.Amphibian, Family.Amphibian, 1],
+    [Family.Runner, Family.Runner, 1],
+    [Family.Runner, Family.Flyer, 1],
+    [Family.Runner, Family.Amphibian, 1],
   ])(
     "should calculate correct damage for super effective",
     (attackerType, defenderType, expectedDamage) => {
