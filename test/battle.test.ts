@@ -1,10 +1,11 @@
 import { Creature } from "../src/Creature";
 import { Battle } from "../src/Battle";
+import { Species } from "../src/Species";
 
 describe("Battle", () => {
   it("should initialise a battle between two creatures", () => {
-    const creature1 = new Creature("Bird", "flyer", { x: 0, y: 0 });
-    const creature2 = new Creature("Shark", "swimmer", { x: 1, y: 1 });
+    const creature1 = new Creature(Species.Bird, "flyer", { x: 0, y: 0 });
+    const creature2 = new Creature(Species.Shark, "swimmer", { x: 1, y: 1 });
     const battle = new Battle(creature1, creature2);
 
     expect(battle.attacker).toBe(creature1);
@@ -12,8 +13,20 @@ describe("Battle", () => {
   });
 
   it("should execute fight between two creatures and declare a winner", () => {
-    const creature1 = new Creature("Bird", "flyer", { x: 0, y: 0 }, 10, 1);
-    const creature2 = new Creature("Shark", "swimmer", { x: 1, y: 1 }, 10, 5);
+    const creature1 = new Creature(
+      Species.Bird,
+      "flyer",
+      { x: 0, y: 0 },
+      10,
+      1
+    );
+    const creature2 = new Creature(
+      Species.Shark,
+      "swimmer",
+      { x: 1, y: 1 },
+      10,
+      5
+    );
     const battle = new Battle(creature1, creature2);
 
     const winner = battle.fight();
@@ -37,14 +50,14 @@ describe("Battle", () => {
     "should calculate correct damage for super effective",
     (attackerType, defenderType, expectedDamage) => {
       const attacker = new Creature(
-        "Bird",
+        Species.Bird,
         attackerType,
         { x: 0, y: 0 },
         10,
         1
       );
       const defender = new Creature(
-        "Shark",
+        Species.Shark,
         defenderType,
         { x: 10, y: 10 },
         10,
