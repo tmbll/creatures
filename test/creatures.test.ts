@@ -26,3 +26,16 @@ describe("World", () => {
     expect(world.collectors.length).toBe(1);
   });
 });
+
+class World {
+  creatures: Creature[] = [];
+  collectors: Collector[] = [];
+
+  addCreature(creature: Creature) {
+    this.creatures.push(creature);
+  }
+
+  addCollector(collector: Collector) {
+    this.collectors.push(collector);
+  }
+}
