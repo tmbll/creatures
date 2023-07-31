@@ -20,10 +20,10 @@ export class Creature implements Entity {
     this.family = family;
     this.position = position;
 
-    // If HP is provided and not null, use the provided value; otherwise, use random number
+    // If HP is provided use the value otherwise use random number
     this.HP = HP ?? randomNumberBetween1And10();
 
-    // If CP is provided and not null, use the provided value; otherwise, use random number
+    // If CP is provided use the value otherwise use random number
     this.CP = CP ?? randomNumberBetween1And10();
   }
 
