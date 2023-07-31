@@ -20,10 +20,22 @@ export class Battle {
     return this.attacker.HP > 0 ? this.attacker : this.defender;
   }
 
+  calculateDamage(attacker: Creature, defender: Creature): any {
+    if (
+      (attacker.family === "flyer" && defender.family === "runner") ||
+      (attacker.family === "amphibian" && defender.family !== "amphibian")
+    ) {
+      return attacker.CP * 2;
+    }
+
+    return attacker.CP;
+  }
+
   private randomiseRoles() {
     const fighters = [this.attacker, this.defender].sort(
       () => Math.random() - 0.5
     );
+
     this.attacker = fighters[0];
     this.defender = fighters[1];
   }
