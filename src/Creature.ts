@@ -18,4 +18,8 @@ export class Creature implements Entity {
     this.family = family;
     this.position = position;
   }
+
+  takeDamage(damage: number) {
+    this.HP = Math.max(this.HP - damage, 0); // HP never below 0
+  }
 }
