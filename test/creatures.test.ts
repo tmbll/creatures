@@ -34,4 +34,20 @@ describe("World", () => {
     expect(world.creatures.length).toBe(1);
     expect(world.collectors.length).toBe(1);
   });
+
+  it("returns nearby creatures for a given collector", () => {
+    const world = new World();
+
+    const collector = new Collector({ x: 0, y: 0 });
+    const nearbyCreature = new Creature("Bird", "flyer", { x: 1, y: 1 });
+    const farAwayCreature = new Creature("Shark", "Swimmer", { x: 10, y: 10 });
+
+    world.addCollector(collector);
+    world.addCreature(nearbyCreature);
+    world.addCreature(farAwayCreature);
+
+    const nearbyCreatures = world.getNearbyCreatures(collector);
+    expect(nearbyCreatures).toContain(nearbyCreature);
+    expect(nearbyCreatures).not.toContain(farAwayCreature);
+  });
 });
