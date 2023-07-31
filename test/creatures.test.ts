@@ -6,3 +6,19 @@ describe("Creature", () => {
     expect(creature.position).toEqual({ x: 0, y: 0 });
   });
 });
+
+class Creature {
+  species: string;
+  family: string;
+  position: { x: number; y: number };
+
+  constructor(
+    species: string,
+    family: string,
+    position: { x: number; y: number }
+  ) {
+    this.species = species;
+    this.family = family;
+    this.position = position;
+  }
+}
