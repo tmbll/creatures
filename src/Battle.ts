@@ -1,26 +1,30 @@
 import { Creature } from "./Creature";
 
 export class Battle {
-  creature1: Creature;
-  creature2: Creature;
+  attacker: Creature;
+  defender: Creature;
 
-  constructor(creature1: Creature, creature2: Creature) {
-    this.creature1 = creature1;
-    this.creature2 = creature2;
+  constructor(attacker: Creature, defender: Creature) {
+    this.attacker = attacker;
+    this.defender = defender;
   }
 
   fight() {
-    const fighters = [this.creature1, this.creature2].sort(
-      () => Math.random() - 0.5
-    );
-    let attacker = fighters[0];
-    let defender = fighters[1];
+    this.randomiseRoles();
 
-    while (this.creature1.HP > 0 && this.creature2.HP > 0) {
-      defender.takeDamage(attacker.CP);
-      [attacker, defender] = [defender, attacker]; // Swap roles
+    while (this.attacker.HP > 0 && this.defender.HP > 0) {
+      this.defender.takeDamage(this.attacker.CP);
+      [this.attacker, this.defender] = [this.defender, this.attacker]; // Swap roles
     }
 
-    return this.creature1.HP > 0 ? this.creature1 : this.creature2;
+    return this.attacker.HP > 0 ? this.attacker : this.defender;
+  }
+
+  private randomiseRoles() {
+    const fighters = [this.attacker, this.defender].sort(
+      () => Math.random() - 0.5
+    );
+    this.attacker = fighters[0];
+    this.defender = fighters[1];
   }
 }

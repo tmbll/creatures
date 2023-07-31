@@ -7,8 +7,8 @@ describe("Battle", () => {
     const creature2 = new Creature("Shark", "swimmer", { x: 1, y: 1 });
     const battle = new Battle(creature1, creature2);
 
-    expect(battle.creature1).toBe(creature1);
-    expect(battle.creature2).toBe(creature2);
+    expect(battle.attacker).toBe(creature1);
+    expect(battle.defender).toBe(creature2);
   });
 
   it("should execute fight between two creatures and declare a winner", () => {
