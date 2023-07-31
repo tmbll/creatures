@@ -1,4 +1,4 @@
-class Creature {
+export class Creature {
   species: string;
   family: string;
   position: { x: number; y: number };

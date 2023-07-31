@@ -8,3 +8,10 @@ describe("Creature", () => {
     expect(creature.position).toEqual({ x: 0, y: 0 });
   });
 });
+
+describe("Collector", () => {
+  it("creates a collector with a position", () => {
+    const collector = new Collector({ x: 0, y: 0 });
+    expect(collector.position).toEqual({ x: 0, y: 0 });
+  });
+});
