@@ -50,4 +50,18 @@ describe("World", () => {
     expect(nearbyCreatures).toContain(nearbyCreature);
     expect(nearbyCreatures).not.toContain(farAwayCreature);
   });
+
+  it("allows a collector to catch a random nearby creature", () => {
+    const world = new World();
+
+    const collector = new Collector({ x: 0, y: 0 });
+    const nearbyCreature = new Creature("Bird", "flyer", { x: 1, y: 1 });
+
+    world.addCollector(collector);
+    world.addCreature(nearbyCreature);
+
+    world.catchRandomCreature(collector);
+
+    expect(collector.collection).toContain(nearbyCreature);
+  });
 });
