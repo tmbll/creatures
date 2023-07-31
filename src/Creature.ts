@@ -1,4 +1,6 @@
-export class Creature {
+import { Entity } from "./Entity";
+
+export class Creature implements Entity {
   species: string;
   family: string;
   position: { x: number; y: number };

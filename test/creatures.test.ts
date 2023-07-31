@@ -1,5 +1,6 @@
 import { Creature } from "../src/Creature";
 import { Collector } from "../src/Collector";
+import { World } from "../src/World";
 
 describe("Creature", () => {
   it("creates a new creature with species, family and position", () => {
@@ -26,16 +27,3 @@ describe("World", () => {
     expect(world.collectors.length).toBe(1);
   });
 });
-
-class World {
-  creatures: Creature[] = [];
-  collectors: Collector[] = [];
-
-  addCreature(creature: Creature) {
-    this.creatures.push(creature);
-  }
-
-  addCollector(collector: Collector) {
-    this.collectors.push(collector);
-  }
-}
