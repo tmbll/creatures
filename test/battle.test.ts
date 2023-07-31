@@ -23,22 +23,37 @@ describe("Battle", () => {
     expect(creature1.HP).toBe(0);
   });
 
-  it("should calculate super effective damage", () => {
-    const flyer = new Creature("Bird", "flyer", { x: 0, y: 0 }, 10, 1);
-    const runner = new Creature("Rabbit", "runner", { x: 1, y: 1 }, 10, 2);
-    const amphibian = new Creature("Frog", "amphibian", { x: 2, y: 2 }, 10, 3);
+  test.each([
+    ["flyer", "runner", 2],
+    ["flyer", "amphibian", 1],
+    ["flyer", "flyer", 1],
+    ["amphibian", "runner", 2],
+    ["amphibian", "flyer", 2],
+    ["amphibian", "amphibian", 1],
+    ["runner", "runner", 1],
+    ["runner", "flyer", 1],
+    ["runner", "amphibian", 1],
+  ])(
+    "should calculate correct damage for super effective",
+    (attackerType, defenderType, expectedDamage) => {
+      const attacker = new Creature(
+        "Bird",
+        attackerType,
+        { x: 0, y: 0 },
+        10,
+        1
+      );
+      const defender = new Creature(
+        "Shark",
+        defenderType,
+        { x: 10, y: 10 },
+        10,
+        2
+      );
 
-    const flyerRunnerBattle = new Battle(flyer, runner);
-    const flyerAmphibianBattle = new Battle(flyer, amphibian);
-    const amphibianRunnerBattle = new Battle(amphibian, runner);
+      const battle = new Battle(attacker, defender);
 
-    // "flyer" is super effective against "runner", so it inflicts double damage
-    expect(flyerRunnerBattle.calculateDamage(flyer, runner)).toBe(2);
-
-    // "flyer" is not super effective against "amphibian", so it inflicts normal damage
-    expect(flyerAmphibianBattle.calculateDamage(flyer, amphibian)).toBe(1);
-
-    // "amphibian" is super effective against all except other "amphibian", so it inflicts double damage
-    expect(amphibianRunnerBattle.calculateDamage(amphibian, runner)).toBe(6);
-  });
+      expect(battle.calculateDamage(attacker, defender)).toBe(expectedDamage);
+    }
+  );
 });
