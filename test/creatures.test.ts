@@ -63,5 +63,6 @@ describe("World", () => {
     world.catchRandomCreature(collector);
 
     expect(collector.collection).toContain(nearbyCreature);
+    expect(world.creatures).not.toContain(nearbyCreature);
   });
 });

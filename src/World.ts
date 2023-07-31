@@ -30,6 +30,14 @@ export class World {
       const randomCreature =
         nearbyCreatures[Math.floor(Math.random() * nearbyCreatures.length)];
       collector.catch(randomCreature);
+      this.removeCreature(randomCreature);
+    }
+  }
+
+  private removeCreature(creature: Creature) {
+    const index = this.creatures.indexOf(creature);
+    if (index !== -1) {
+      this.creatures.splice(index, 1);
     }
   }
 }
