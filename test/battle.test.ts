@@ -22,4 +22,23 @@ describe("Battle", () => {
     expect(winner).toBe(creature2);
     expect(creature1.HP).toBe(0);
   });
+
+  it("should calculate super effective damage", () => {
+    const flyer = new Creature("Bird", "flyer", { x: 0, y: 0 }, 10, 1);
+    const runner = new Creature("Rabbit", "runner", { x: 1, y: 1 }, 10, 2);
+    const amphibian = new Creature("Frog", "amphibian", { x: 2, y: 2 }, 10, 3);
+
+    const flyerRunnerBattle = new Battle(flyer, runner);
+    const flyerAmphibianBattle = new Battle(flyer, amphibian);
+    const amphibianRunnerBattle = new Battle(amphibian, runner);
+
+    // "flyer" is super effective against "runner", so it inflicts double damage
+    expect(flyerRunnerBattle.calculateDamage(flyer, runner)).toBe(2);
+
+    // "flyer" is not super effective against "amphibian", so it inflicts normal damage
+    expect(flyerAmphibianBattle.calculateDamage(flyer, amphibian)).toBe(1);
+
+    // "amphibian" is super effective against all except other "amphibian", so it inflicts double damage
+    expect(amphibianRunnerBattle.calculateDamage(amphibian, runner)).toBe(6);
+  });
 });
