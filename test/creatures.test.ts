@@ -16,3 +16,13 @@ describe("Collector", () => {
     expect(collector.position).toEqual({ x: 0, y: 0 });
   });
 });
+
+describe("World", () => {
+  it("creates a world and adds a creator and collector to it", () => {
+    const world = new World();
+    world.addCreature(new Creature("Bird", "flyer", { x: 0, y: 0 }));
+    world.addCollector(new Collector({ x: 0, y: 0 }));
+    expect(world.creatures.length).toBe(1);
+    expect(world.collectors.length).toBe(1);
+  });
+});
